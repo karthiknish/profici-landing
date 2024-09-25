@@ -170,7 +170,7 @@ const PricingComponent = () => {
           transition={{ duration: 0.5 }}
           className="text-4xl font-bold text-center mb-4"
         >
-          Simple, transparent pricing
+          Simple And Transparent Pricing
         </motion.h2>
         <motion.p
           initial="hidden"

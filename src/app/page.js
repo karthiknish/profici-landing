@@ -6,27 +6,83 @@ import ContactForm from "@/components/form";
 import OnboardingProcess from "@/components/onboard";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-
+import IconCloud from "@/components/magicui/icon-cloud";
 export default function Home() {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
+  const slugs = [
+    "typescript",
+    "javascript",
+    "dart",
+    "java",
+    "react",
+    "flutter",
+    "android",
+    "html5",
+    "css3",
+    "nodedotjs",
+    "express",
+    "nextdotjs",
+    "prisma",
+    "amazonaws",
+    "postgresql",
+    "firebase",
+    "nginx",
+    "vercel",
+    "testinglibrary",
+    "jest",
+    "cypress",
+    "docker",
+    "git",
+    "jira",
+    "github",
+    "gitlab",
+    "visualstudiocode",
+    "androidstudio",
+    "sonarqube",
+    "figma",
+  ];
   const fadeInUp = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
   };
 
+  const [heroRef, heroInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  const [whyChooseUsRef, whyChooseUsInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  const [onboardingRef, onboardingInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  const [pricingRef, pricingInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  const [contactRef, contactInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
   return (
-    <div className="min-h-screen font-[family-name:var(--font-geist-sans)]">
-      <div className="p-8 pb-20 sm:p-20">
+    <div className="min-h-screen font-[family-name:var(--font-geist-sanxs)]">
+      <motion.div
+        ref={heroRef}
+        initial="hidden"
+        animate={heroInView ? "visible" : "hidden"}
+        variants={fadeInUp}
+        transition={{ duration: 0.5 }}
+        className="p-8 pb-20 sm:p-20"
+      >
         <motion.main
-          className="flex flex-col md:flex-row items-center justify-between gap-12 mb-20"
-          initial="hidden"
-          animate="visible"
+          className="flex flex-col md:flex-row items-start justify-between gap-12 mb-20"
           variants={fadeInUp}
-          transition={{ duration: 0.5 }}
         >
           <div className="flex-1 max-w-2xl">
             <motion.h1
@@ -59,20 +115,20 @@ export default function Home() {
             </motion.a>
           </div>
           <motion.div
-            className="flex-1 flex justify-end items-center"
+            className="flex-grow flex justify-center"
             variants={fadeInUp}
           >
-            <div className="w-1/2 max-w-md ml-auto left-10">
+            <div className="w-1/2 max-w-md">
               <Globe />
             </div>
           </motion.div>
         </motion.main>
-      </div>
+      </motion.div>
       <motion.section
-        ref={ref}
+        ref={whyChooseUsRef}
         className="w-full bg-gray-50"
         initial="hidden"
-        animate={inView ? "visible" : "hidden"}
+        animate={whyChooseUsInView ? "visible" : "hidden"}
         variants={fadeInUp}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
@@ -135,11 +191,104 @@ export default function Home() {
           </div>
         </div>
       </motion.section>
-      <OnboardingProcess />
-      <PricingComponent />
-      <div className="p-8 pb-20 sm:p-20">
+      <motion.div
+        ref={onboardingRef}
+        initial="hidden"
+        animate={onboardingInView ? "visible" : "hidden"}
+        variants={fadeInUp}
+        transition={{ duration: 0.5 }}
+      >
+        <OnboardingProcess />
+      </motion.div>
+      <motion.section
+        className="py-16 bg-gradient-to-br from-gray-50 to-white"
+        initial="hidden"
+        animate="visible"
+        variants={fadeInUp}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-8">
+            Our Website Builds
+          </h2>
+          <div className="flex justify-center w-1/4 mx-auto">
+            <IconCloud iconSlugs={slugs} />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <motion.div
+              className="bg-white p-6 rounded-lg shadow-lg"
+              variants={fadeInUp}
+              transition={{ delay: 0.2 }}
+            >
+              <h3 className="text-xl font-semibold mb-4">
+                Conversion-Focused Design
+              </h3>
+              <p className="text-gray-600 mb-4">
+                Our websites are designed with a focus on improving conversion
+                rates. We use data-driven design principles to ensure that your
+                website not only attracts visitors but also converts them into
+                customers.
+              </p>
+              <ul className="list-disc list-inside text-gray-600">
+                <li>Implement latest UX/UI design principles</li>
+                <li>Create intuitive and easy-to-navigate websites</li>
+                <li>Focus on higher conversion rates</li>
+              </ul>
+            </motion.div>
+            <motion.div
+              className="relative h-64 md:h-full"
+              variants={fadeInUp}
+              transition={{ delay: 0.4 }}
+            >
+              <div className="absolute inset-0 bg-white rounded-lg shadow-lg p-6">
+                <h3 className="text-xl font-semibold mb-4">
+                  Data-Driven Improvement
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  We integrate advanced analytics tools to track user behavior
+                  and make data-informed decisions to continuously improve your
+                  website's performance.
+                </p>
+                <ul className="list-disc list-inside text-gray-600">
+                  <li>Track user behavior</li>
+                  <li>Make data-informed decisions</li>
+                  <li>Continuously improve performance</li>
+                </ul>
+              </div>
+            </motion.div>
+          </div>
+          <motion.div
+            className="text-center mt-8"
+            variants={fadeInUp}
+            transition={{ delay: 0.6 }}
+          >
+            <p className="text-lg text-gray-700">
+              Our goal is to help you achieve higher conversion rates, increased
+              sales, and better customer engagement.
+            </p>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      <motion.div
+        ref={pricingRef}
+        initial="hidden"
+        animate={pricingInView ? "visible" : "hidden"}
+        variants={fadeInUp}
+        transition={{ duration: 0.5 }}
+      >
+        <PricingComponent />
+      </motion.div>
+      <motion.div
+        ref={contactRef}
+        initial="hidden"
+        animate={contactInView ? "visible" : "hidden"}
+        variants={fadeInUp}
+        transition={{ duration: 0.5 }}
+        className="p-8 pb-20 sm:p-20"
+      >
         <ContactForm />
-      </div>
+      </motion.div>
     </div>
   );
 }

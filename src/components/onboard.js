@@ -30,29 +30,29 @@ const OnboardingProcess = () => {
   ];
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-12 bg-gray-50">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row items-start">
-          <h2 className="text-3xl font-bold mb-12 md:w-1/3 md:sticky md:top-1/2 md:transform md:-translate-y-1/2">
+        <div className="flex flex-col md:flex-row min-h-[400px] items-center">
+          <h2 className="text-3xl font-bold mb-8 md:w-1/3 md:flex md:items-center md:justify-center">
             Our Onboarding Process
           </h2>
           <div className="md:w-2/3">
             <AnimatedList
-              className="grid grid-cols-1 gap-4 h-[calc(100vh-8rem)] overflow-y-auto"
+              className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[500px] overflow-y-auto p-4 rounded-lg"
               delay={2000}
             >
               {steps.map((step, index) => (
                 <motion.div
                   key={index}
-                  className="bg-gray-50 rounded-lg p-6 shadow-md w-full"
+                  className="bg-white rounded-lg p-4 shadow-md"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 rounded-full bg-[#FDC145] flex items-center justify-center mr-4">
+                  <div className="flex items-center mb-2">
+                    <div className="w-10 h-10 rounded-full bg-[#FDC145] flex items-center justify-center mr-3">
                       <svg
-                        className="w-6 h-6 text-white"
+                        className="w-5 h-5 text-white"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -66,9 +66,9 @@ const OnboardingProcess = () => {
                         />
                       </svg>
                     </div>
-                    <h3 className="text-xl font-semibold">{step.title}</h3>
+                    <h3 className="text-lg font-semibold">{step.title}</h3>
                   </div>
-                  <p className="text-gray-600">{step.description}</p>
+                  <p className="text-gray-600 text-sm">{step.description}</p>
                 </motion.div>
               ))}
             </AnimatedList>
