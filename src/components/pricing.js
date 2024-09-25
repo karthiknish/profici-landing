@@ -182,7 +182,7 @@ const PricingComponent = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-xl text-gray-600 text-center mb-12"
         >
-          Choose the plan that's right for your business
+          Choose the plan that"s right for your business
         </motion.p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {plans.map((plan, index) => (

@@ -44,7 +44,7 @@ export default function Home() {
             </motion.h2>
             <motion.p className="text-lg mb-8" variants={fadeInUp}>
               Our expert team will help you create a stunning online presence
-              that not only looks great but also drives results. Whether you're
+              that not only looks great but also drives results. Whether you"re
               a small business or a large enterprise, we have the perfect
               solution tailored to your needs.
             </motion.p>
