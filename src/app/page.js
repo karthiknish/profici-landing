@@ -201,66 +201,79 @@ export default function Home() {
         <OnboardingProcess />
       </motion.div>
       <motion.section
-        className="py-16 bg-gradient-to-br from-gray-50 to-white"
+        className="bg-gradient-to-br from-gray-50 to-white py-16"
         initial="hidden"
         animate="visible"
         variants={fadeInUp}
         transition={{ duration: 0.5 }}
       >
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-8">
+          <h2 className="mb-8 text-3xl font-bold text-center">
             Our Website Builds
           </h2>
-          <div className="flex justify-center w-1/4 mx-auto">
-            <IconCloud iconSlugs={slugs} />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div className="flex flex-col md:flex-row items-start justify-around">
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-lg"
-              variants={fadeInUp}
-              transition={{ delay: 0.2 }}
+              className="w-full md:w-1/3 mb-8 md:mb-0 md:sticky md:top-8"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
             >
-              <h3 className="text-xl font-semibold mb-4">
-                Conversion-Focused Design
-              </h3>
-              <p className="text-gray-600 mb-4">
-                Our websites are designed with a focus on improving conversion
-                rates. We use data-driven design principles to ensure that your
-                website not only attracts visitors but also converts them into
-                customers.
-              </p>
-              <ul className="list-disc list-inside text-gray-600">
-                <li>Implement latest UX/UI design principles</li>
-                <li>Create intuitive and easy-to-navigate websites</li>
-                <li>Focus on higher conversion rates</li>
-              </ul>
+              <IconCloud iconSlugs={slugs} />
             </motion.div>
-            <motion.div
-              className="relative h-64 md:h-full"
-              variants={fadeInUp}
-              transition={{ delay: 0.4 }}
-            >
-              <div className="absolute inset-0 bg-white rounded-lg shadow-lg p-6">
-                <h3 className="text-xl font-semibold mb-4">
-                  Data-Driven Improvement
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  We integrate advanced analytics tools to track user behavior
-                  and make data-informed decisions to continuously improve your
-                  website's performance.
-                </p>
-                <ul className="list-disc list-inside text-gray-600">
-                  <li>Track user behavior</li>
-                  <li>Make data-informed decisions</li>
-                  <li>Continuously improve performance</li>
-                </ul>
-              </div>
-            </motion.div>
+            <div className="w-full md:w-1/2">
+              <motion.div
+                className="flex flex-col gap-8"
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <motion.div
+                  className="bg-white cursor-pointer p-6 rounded-lg shadow-lg"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <h3 className="mb-4 text-xl font-semibold">
+                    Conversion-Focused Design
+                  </h3>
+                  <p className="mb-4 text-gray-600">
+                    Our websites are designed with a focus on improving
+                    conversion rates. We use data-driven design principles to
+                    ensure that your website not only attracts visitors but also
+                    converts them into customers.
+                  </p>
+                  <ul className="list-disc list-inside text-gray-600">
+                    <li>Implement latest UX/UI design principles</li>
+                    <li>Create intuitive and easy-to-navigate websites</li>
+                    <li>Focus on higher conversion rates</li>
+                  </ul>
+                </motion.div>
+                <motion.div
+                  className="bg-white p-6 cursor-pointer rounded-lg shadow-lg"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <h3 className="mb-4 text-xl font-semibold">
+                    Data-Driven Improvement
+                  </h3>
+                  <p className="mb-4 text-gray-600">
+                    We integrate advanced analytics tools to track user behavior
+                    and make data-informed decisions to continuously improve
+                    your website's performance.
+                  </p>
+                  <ul className="list-disc list-inside text-gray-600">
+                    <li>Track user behavior</li>
+                    <li>Make data-informed decisions</li>
+                    <li>Continuously improve performance</li>
+                  </ul>
+                </motion.div>
+              </motion.div>
+            </div>
           </div>
           <motion.div
-            className="text-center mt-8"
-            variants={fadeInUp}
-            transition={{ delay: 0.6 }}
+            className="mt-8 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
           >
             <p className="text-lg text-gray-700">
               Our goal is to help you achieve higher conversion rates, increased
