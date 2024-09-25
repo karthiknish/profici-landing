@@ -19,10 +19,27 @@ const ContactForm = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log(formData);
+    try {
+      const response = await fetch("/api/submit-form", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        console.log("Form data submitted successfully");
+        // Reset form or show success message
+      } else {
+        throw new Error("Form submission failed");
+      }
+    } catch (error) {
+      console.error("Error submitting form data:", error);
+      // Show error message to user
+    }
   };
 
   return (

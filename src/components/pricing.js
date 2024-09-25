@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { useRouter } from "next/navigation";
 
-const PricingCard = ({ title, price, features, isPopular }) => {
+const PricingCard = ({ title, price, features, isPopular, onSelect }) => {
   const controls = useAnimation();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
+  const router = useRouter();
 
   useEffect(() => {
     if (inView) {
@@ -28,6 +30,11 @@ const PricingCard = ({ title, price, features, isPopular }) => {
         ease: "linear",
       },
     },
+  };
+
+  const handleGetStarted = () => {
+    onSelect(title);
+    router.push("/contact");
   };
 
   return (
@@ -97,6 +104,7 @@ const PricingCard = ({ title, price, features, isPopular }) => {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         className="w-full py-4 px-6 rounded-full text-lg font-semibold transition-colors bg-black text-white hover:bg-gray-800"
+        onClick={handleGetStarted}
       >
         Get started
       </motion.button>
@@ -157,6 +165,14 @@ const PricingComponent = () => {
     }
   }, [controls, inView]);
 
+  const handleSelectPlan = (planTitle) => {
+    // You can implement the logic to highlight the radio button here
+    // For example, you could set a state variable or use a ref to access the radio button
+    console.log(`Selected plan: ${planTitle}`);
+    // You might want to store this selection in a state or context
+    // so that it can be accessed in the contact form
+  };
+
   return (
     <section ref={ref} className="py-20 bg-gray-50 w-full">
       <div className="container mx-auto px-4">
@@ -182,11 +198,11 @@ const PricingComponent = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-xl text-gray-600 text-center mb-12"
         >
-          Choose the plan that"s right for your business
+          Choose the plan that's right for your business
         </motion.p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {plans.map((plan, index) => (
-            <PricingCard key={index} {...plan} />
+            <PricingCard key={index} {...plan} onSelect={handleSelectPlan} />
           ))}
         </div>
       </div>

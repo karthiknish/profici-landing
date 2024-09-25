@@ -115,7 +115,7 @@ export default function Home() {
             </motion.a>
           </div>
           <motion.div
-            className="flex-grow flex justify-center"
+            className="flex-grow flex justify-start"
             variants={fadeInUp}
           >
             <div className="w-1/2 max-w-md">
@@ -213,7 +213,7 @@ export default function Home() {
           </h2>
           <div className="flex flex-col md:flex-row items-start justify-around">
             <motion.div
-              className="w-full md:w-1/3 mb-8 md:mb-0 md:sticky md:top-8"
+              className="w-full md:w-1/3 mb-8 md:mb-0 md:sticky md:top-4"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
@@ -299,9 +299,7 @@ export default function Home() {
         variants={fadeInUp}
         transition={{ duration: 0.5 }}
         className="p-8 pb-20 sm:p-20"
-      >
-        <ContactForm />
-      </motion.div>
+      ></motion.div>
     </div>
   );
 }
