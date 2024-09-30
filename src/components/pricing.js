@@ -198,7 +198,7 @@ const PricingComponent = () => {
         "10-20 pages",
         "Enhanced custom design",
         "Multiple contact forms",
-        "SEO optimization",
+        "SEO optimisation",
         "CMS integration",
         "Analytics setup",
       ],
