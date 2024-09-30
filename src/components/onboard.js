@@ -44,12 +44,21 @@ const OnboardingProcess = () => {
               {steps.map((step, index) => (
                 <motion.div
                   key={index}
-                  className="bg-white rounded-lg p-4 shadow-md"
+                  className="bg-white rounded-lg p-4 shadow-md relative overflow-hidden"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
+                  style={{
+                    background:
+                      "linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%)",
+                    boxShadow:
+                      "0 10px 20px rgba(0,0,0,0.1), 0 6px 6px rgba(0,0,0,0.1)",
+                  }}
                 >
-                  <div className="flex items-center mb-2">
+                  <div className="absolute top-0 left-0 bg-[#FDC145] text-white font-bold rounded-br-lg px-2 py-1 text-sm">
+                    {index + 1}
+                  </div>
+                  <div className="flex items-center mb-2 mt-6">
                     <div className="w-10 h-10 rounded-full bg-[#FDC145] flex items-center justify-center mr-3">
                       <svg
                         className="w-5 h-5 text-white"
@@ -69,12 +78,31 @@ const OnboardingProcess = () => {
                     <h3 className="text-lg font-semibold">{step.title}</h3>
                   </div>
                   <p className="text-gray-600 text-sm">{step.description}</p>
+                  <div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      background:
+                        "linear-gradient(45deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%)",
+                      backgroundSize: "200% 200%",
+                      animation: "shine 5s infinite",
+                    }}
+                  ></div>
                 </motion.div>
               ))}
             </AnimatedList>
           </div>
         </div>
       </div>
+      <style jsx>{`
+        @keyframes shine {
+          0% {
+            background-position: -200% 0;
+          }
+          100% {
+            background-position: 200% 0;
+          }
+        }
+      `}</style>
     </section>
   );
 };
