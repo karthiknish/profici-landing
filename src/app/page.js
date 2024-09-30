@@ -105,8 +105,14 @@ export default function Home() {
               solution tailored to your needs.
             </motion.p>
             <motion.a
-              href="#contact"
-              className="inline-block bg-black text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-gray-800 transition-colors"
+              onClick={() => {
+                const pricingElement =
+                  document.getElementById("pricing-section");
+                if (pricingElement) {
+                  pricingElement.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
+              className="inline-block bg-black text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-gray-800 transition-colors cursor-pointer"
               variants={fadeInUp}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -289,6 +295,7 @@ export default function Home() {
         animate={pricingInView ? "visible" : "hidden"}
         variants={fadeInUp}
         transition={{ duration: 0.5 }}
+        id="pricing-section"
       >
         <PricingComponent />
       </motion.div>
