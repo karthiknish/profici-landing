@@ -81,7 +81,7 @@ export default function Home() {
         className="p-8 pb-20 sm:p-20"
       >
         <motion.main
-          className="flex flex-col md:flex-row items-start justify-between gap-12 mb-20"
+          className="relative flex flex-col items-start justify-between gap-12 mb-20"
           variants={fadeInUp}
         >
           <div className="flex-1 max-w-2xl">
@@ -121,12 +121,10 @@ export default function Home() {
             </motion.a>
           </div>
           <motion.div
-            className="flex-grow flex justify-start"
+            className="w-full max-w-lg mx-auto mt-4 md:mt-0 md:absolute md:top-0 md:left-1/2 md:transform md:-translate-x-3/4"
             variants={fadeInUp}
           >
-            <div className="w-full md:w-3/4 lg:w-1/2 max-w-md mx-auto">
-              <Globe />
-            </div>
+            <Globe />
           </motion.div>
         </motion.main>
       </motion.div>

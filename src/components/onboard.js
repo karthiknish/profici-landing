@@ -38,7 +38,7 @@ const OnboardingProcess = () => {
           </h2>
           <div className="md:w-2/3">
             <AnimatedList
-              className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[500px] overflow-y-auto p-4 rounded-lg"
+              className="grid grid-cols-1 md:grid-cols-2 gap-4 md:max-h-[500px] overflow-y-auto p-4 rounded-lg md:min-h-[400px] xs:min-h-[600px]"
               delay={2000}
             >
               {steps.map((step, index) => (
