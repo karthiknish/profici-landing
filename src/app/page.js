@@ -124,7 +124,7 @@ export default function Home() {
             className="flex-grow flex justify-start"
             variants={fadeInUp}
           >
-            <div className="w-1/4 max-w-md">
+            <div className="w-full md:w-3/4 lg:w-1/2 max-w-md mx-auto">
               <Globe />
             </div>
           </motion.div>
