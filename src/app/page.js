@@ -95,14 +95,14 @@ export default function Home() {
               className="text-2xl sm:text-3xl font-semibold mb-6"
               variants={fadeInUp}
             >
-              Compete with improvements in AI and get your website ready for
-              2025
+              Lead the way in your industry by implementing the latest
+              technologies and AI innovations!
             </motion.h2>
             <motion.p className="text-lg mb-8" variants={fadeInUp}>
-              Our expert team will help you create a stunning online presence
-              that not only looks great but also drives results. Whether you"re
-              a small business or a large enterprise, we have the perfect
-              solution tailored to your needs.
+              Our expert team will craft a stunning online presence that not
+              only looks impressive but delivers real results. Whether
+              you&apos;re a small business or a large enterprise, we provide
+              tailored solutions to meet your unique needs.
             </motion.p>
             <motion.a
               onClick={() => {
@@ -262,7 +262,7 @@ export default function Home() {
                   <p className="mb-4 text-gray-600">
                     We integrate advanced analytics tools to track user behavior
                     and make data-informed decisions to continuously improve
-                    your website"s performance.
+                    your website&apos;s performance.
                   </p>
                   <ul className="list-disc list-inside text-gray-600">
                     <li>Track user behavior</li>
