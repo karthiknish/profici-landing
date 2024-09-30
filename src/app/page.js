@@ -121,7 +121,7 @@ export default function Home() {
             </motion.a>
           </div>
           <motion.div
-            className="w-full max-w-lg mx-auto mt-4 md:mt-0 md:absolute md:top-0 md:left-1/2 md:transform md:-translate-x-3/4"
+            className="w-full max-w-lg mx-auto mt-4 md:mt-0 md:absolute md:-top-10 md:left-1/2 md:transform md:-translate-x-1/4"
             variants={fadeInUp}
           >
             <Globe />

@@ -21,7 +21,7 @@ const Header = () => {
     <header className="w-full py-6 bg-white border-b border-gray-200">
       <div className="container mx-auto px-4 flex justify-between items-center">
         {/* Desktop Menu */}
-        <nav className="hidden md:flex items-center space-x-12">
+        <nav className="hidden md:flex items-center space-x-6">
           {menuItems.slice(0, 2).map((item, index) => (
             <Link
               key={index}
@@ -39,7 +39,7 @@ const Header = () => {
           href="https://profici.co.uk"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-shrink-0 md:absolute md:left-1/2 md:transform md:-translate-x-1/2"
+          className="flex-shrink-0 mx-4 md:absolute md:left-1/2 md:transform md:-translate-x-1/2"
         >
           <Image
             src="https://profici.co.uk/wp-content/themes/proficinew/assets/images/Proficiblack.svg"
@@ -50,7 +50,7 @@ const Header = () => {
           />
         </Link>
 
-        <nav className="hidden md:flex items-center space-x-12">
+        <nav className="hidden md:flex items-center space-x-6">
           {menuItems.slice(2).map((item, index) => (
             <Link
               key={index}
