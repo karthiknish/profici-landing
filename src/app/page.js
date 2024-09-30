@@ -118,7 +118,7 @@ export default function Home() {
             className="flex-grow flex justify-start"
             variants={fadeInUp}
           >
-            <div className="w-1/2 max-w-md">
+            <div className="w-1/4 max-w-md">
               <Globe />
             </div>
           </motion.div>
@@ -292,14 +292,6 @@ export default function Home() {
       >
         <PricingComponent />
       </motion.div>
-      <motion.div
-        ref={contactRef}
-        initial="hidden"
-        animate={contactInView ? "visible" : "hidden"}
-        variants={fadeInUp}
-        transition={{ duration: 0.5 }}
-        className="p-8 pb-20 sm:p-20"
-      ></motion.div>
     </div>
   );
 }

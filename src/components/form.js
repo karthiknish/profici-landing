@@ -7,9 +7,26 @@ const ContactForm = () => {
     phone: "",
     email: "",
     companyOrWebsite: "",
-    package: "",
+    packages: "",
     message: "",
   });
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  const validateForm = () => {
+    let newErrors = {};
+    if (!formData.name.trim()) newErrors.name = "Name is required";
+    if (!formData.phone.trim()) newErrors.phone = "Phone is required";
+    if (!formData.email.trim()) newErrors.email = "Email is required";
+    else if (!/\S+@\S+\.\S+/.test(formData.email))
+      newErrors.email = "Email is invalid";
+    if (!formData.companyOrWebsite.trim())
+      newErrors.companyOrWebsite = "Company Name / Website URL is required";
+    if (!formData.packages) newErrors.packages = "Please select a package";
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,28 +34,45 @@ const ContactForm = () => {
       ...prevState,
       [name]: value,
     }));
+    // Clear the error for this field as the user types
+    if (errors[name]) {
+      setErrors((prevErrors) => ({ ...prevErrors, [name]: null }));
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch("/api/submit-form", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+    if (validateForm()) {
+      setIsSubmitting(true);
+      setSubmitStatus(null);
+      try {
+        const response = await fetch("/api/submit-form", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
 
-      if (response.ok) {
-        console.log("Form data submitted successfully");
-        // Reset form or show success message
-      } else {
-        throw new Error("Form submission failed");
+        if (response.ok) {
+          setSubmitStatus("success");
+          setFormData({
+            name: "",
+            phone: "",
+            email: "",
+            companyOrWebsite: "",
+            packages: "",
+            message: "",
+          });
+        } else {
+          throw new Error("Form submission failed");
+        }
+      } catch (error) {
+        console.error("Error submitting form data:", error);
+        setSubmitStatus("error");
+      } finally {
+        setIsSubmitting(false);
       }
-    } catch (error) {
-      console.error("Error submitting form data:", error);
-      // Show error message to user
     }
   };
 
@@ -52,6 +86,16 @@ const ContactForm = () => {
       <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">
         Get Your Website Ready for 2025!
       </h2>
+      {submitStatus === "success" && (
+        <div className="mb-4 p-2 bg-green-100 text-green-700 rounded">
+          Form submitted successfully!
+        </div>
+      )}
+      {submitStatus === "error" && (
+        <div className="mb-4 p-2 bg-red-100 text-red-700 rounded">
+          An error occurred. Please try again.
+        </div>
+      )}
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="relative">
           <input
@@ -61,15 +105,22 @@ const ContactForm = () => {
             value={formData.name}
             onChange={handleChange}
             required
-            className="peer w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#FDC145] transition-colors"
+            className={`peer w-full px-4 py-3 border-2 ${
+              errors.name ? "border-red-500" : "border-gray-300"
+            } rounded-lg focus:outline-none focus:border-[#FDC145] transition-colors`}
             placeholder=" "
           />
           <label
             htmlFor="name"
-            className="absolute left-4 top-3 text-gray-500 transition-all peer-focus:text-sm peer-focus:-top-6 peer-focus:text-[#FDC145] peer-placeholder-shown:top-3 peer-placeholder-shown:text-base"
+            className={`absolute left-4 -top-6 text-sm ${
+              errors.name ? "text-red-500" : "text-gray-500"
+            } transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:text-sm peer-focus:-top-6 peer-focus:text-[#FDC145]`}
           >
             Name
           </label>
+          {errors.name && (
+            <p className="text-red-500 text-xs mt-1">{errors.name}</p>
+          )}
         </div>
         <div className="relative">
           <input
@@ -79,15 +130,22 @@ const ContactForm = () => {
             value={formData.phone}
             onChange={handleChange}
             required
-            className="peer w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#FDC145] transition-colors"
+            className={`peer w-full px-4 py-3 border-2 ${
+              errors.phone ? "border-red-500" : "border-gray-300"
+            } rounded-lg focus:outline-none focus:border-[#FDC145] transition-colors`}
             placeholder=" "
           />
           <label
             htmlFor="phone"
-            className="absolute left-4 top-3 text-gray-500 transition-all peer-focus:text-sm peer-focus:-top-6 peer-focus:text-[#FDC145] peer-placeholder-shown:top-3 peer-placeholder-shown:text-base"
+            className={`absolute left-4 -top-6 text-sm ${
+              errors.phone ? "text-red-500" : "text-gray-500"
+            } transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:text-sm peer-focus:-top-6 peer-focus:text-[#FDC145]`}
           >
             Phone
           </label>
+          {errors.phone && (
+            <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
+          )}
         </div>
         <div className="relative">
           <input
@@ -97,15 +155,22 @@ const ContactForm = () => {
             value={formData.email}
             onChange={handleChange}
             required
-            className="peer w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#FDC145] transition-colors"
+            className={`peer w-full px-4 py-3 border-2 ${
+              errors.email ? "border-red-500" : "border-gray-300"
+            } rounded-lg focus:outline-none focus:border-[#FDC145] transition-colors`}
             placeholder=" "
           />
           <label
             htmlFor="email"
-            className="absolute left-4 top-3 text-gray-500 transition-all peer-focus:text-sm peer-focus:-top-6 peer-focus:text-[#FDC145] peer-placeholder-shown:top-3 peer-placeholder-shown:text-base"
+            className={`absolute left-4 -top-6 text-sm ${
+              errors.email ? "text-red-500" : "text-gray-500"
+            } transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:text-sm peer-focus:-top-6 peer-focus:text-[#FDC145]`}
           >
             Email
           </label>
+          {errors.email && (
+            <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+          )}
         </div>
         <div className="relative">
           <input
@@ -115,19 +180,32 @@ const ContactForm = () => {
             value={formData.companyOrWebsite}
             onChange={handleChange}
             required
-            className="peer w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#FDC145] transition-colors"
+            className={`peer w-full px-4 py-3 border-2 ${
+              errors.companyOrWebsite ? "border-red-500" : "border-gray-300"
+            } rounded-lg focus:outline-none focus:border-[#FDC145] transition-colors`}
             placeholder=" "
           />
           <label
             htmlFor="companyOrWebsite"
-            className="absolute left-4 top-3 text-gray-500 transition-all peer-focus:text-sm peer-focus:-top-6 peer-focus:text-[#FDC145] peer-placeholder-shown:top-3 peer-placeholder-shown:text-base"
+            className={`absolute left-4 -top-6 text-sm ${
+              errors.companyOrWebsite ? "text-red-500" : "text-gray-500"
+            } transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:text-sm peer-focus:-top-6 peer-focus:text-[#FDC145]`}
           >
             Company Name / Website URL
           </label>
+          {errors.companyOrWebsite && (
+            <p className="text-red-500 text-xs mt-1">
+              {errors.companyOrWebsite}
+            </p>
+          )}
         </div>
         <div className="relative">
           <div className="flex flex-col space-y-2">
-            <label className="text-gray-700 font-medium">
+            <label
+              className={`text-gray-700 font-medium ${
+                errors.packages ? "text-red-500" : ""
+              }`}
+            >
               Select a package:
             </label>
             <div className="space-y-2">
@@ -135,9 +213,9 @@ const ContactForm = () => {
                 <input
                   type="radio"
                   id="brochure"
-                  name="package"
+                  name="packages"
                   value="brochure"
-                  checked={formData.package === "brochure"}
+                  checked={formData.packages === "brochure"}
                   onChange={handleChange}
                   className="form-radio text-[#FDC145] focus:ring-[#FDC145]"
                 />
@@ -147,9 +225,9 @@ const ContactForm = () => {
                 <input
                   type="radio"
                   id="business"
-                  name="package"
+                  name="packages"
                   value="business"
-                  checked={formData.package === "business"}
+                  checked={formData.packages === "business"}
                   onChange={handleChange}
                   className="form-radio text-[#FDC145] focus:ring-[#FDC145]"
                 />
@@ -159,9 +237,9 @@ const ContactForm = () => {
                 <input
                   type="radio"
                   id="ecommerce"
-                  name="package"
+                  name="packages"
                   value="ecommerce"
-                  checked={formData.package === "ecommerce"}
+                  checked={formData.packages === "ecommerce"}
                   onChange={handleChange}
                   className="form-radio text-[#FDC145] focus:ring-[#FDC145]"
                 />
@@ -169,6 +247,9 @@ const ContactForm = () => {
               </label>
             </div>
           </div>
+          {errors.packages && (
+            <p className="text-red-500 text-xs mt-1">{errors.packages}</p>
+          )}
         </div>
         <div className="relative">
           <textarea
@@ -182,7 +263,7 @@ const ContactForm = () => {
           ></textarea>
           <label
             htmlFor="message"
-            className="absolute left-4 top-3 text-gray-500 transition-all peer-focus:text-sm peer-focus:-top-6 peer-focus:text-[#FDC145] peer-placeholder-shown:top-3 peer-placeholder-shown:text-base"
+            className="absolute left-4 -top-6 text-sm text-gray-500 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:text-sm peer-focus:-top-6 peer-focus:text-[#FDC145]"
           >
             Message
           </label>
@@ -192,9 +273,10 @@ const ContactForm = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             type="submit"
-            className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-lg font-medium text-white bg-black hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black transition-colors"
+            disabled={isSubmitting}
+            className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-lg font-medium text-white bg-black hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Submit
+            {isSubmitting ? "Submitting..." : "Submit"}
           </motion.button>
         </div>
       </form>
