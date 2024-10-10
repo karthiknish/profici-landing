@@ -210,7 +210,7 @@ const PricingComponent = () => {
       title: "E-Commerce Website",
       price: "5,000",
       features: [
-        "Fully functional e-commerce",
+        "Fully functional e-commerce site",
         "Up to 50 products",
         "Payment gateway integration",
         "Inventory management",
