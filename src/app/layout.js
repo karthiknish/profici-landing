@@ -38,7 +38,7 @@ export default function RootLayout({ children }) {
             fbq('track', 'PageView');
           `}
         </Script>
-          <Script async src="https://www.googletagmanager.com/gtag/js?id=AW-10832930955"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-10832930955'); </Script>
+          <Script async src="https://www.googletagmanager.com/gtag/js?id=AW-10832930955"></Script> <Script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-10832930955'); </Script>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
