@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 
 const ContactForm = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -64,6 +66,8 @@ const ContactForm = () => {
             packages: "",
             message: "",
           });
+          // Redirect to thank you page
+          router.push("/thank-you");
         } else {
           throw new Error("Form submission failed");
         }
