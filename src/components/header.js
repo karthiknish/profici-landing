@@ -21,7 +21,7 @@ const Header = () => {
     <header className="w-full py-6 bg-white border-b border-gray-200">
       <div className="container mx-auto px-4 flex justify-between items-center">
         {/* Desktop Menu */}
-        <nav className="hidden md:flex items-center space-x-6">
+        <nav className="hidden md:flex items-center space-x-40">
           {menuItems.slice(0, 2).map((item, index) => (
             <Link
               key={index}
@@ -50,7 +50,7 @@ const Header = () => {
           />
         </Link>
 
-        <nav className="hidden md:flex items-center space-x-6">
+        <nav className="hidden md:flex items-center space-x-40">
           {menuItems.slice(2).map((item, index) => (
             <Link
               key={index}
