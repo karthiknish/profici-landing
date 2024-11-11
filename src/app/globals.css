@@ -1,4 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-  
+input[type="submit" i] {
+  background: black !important;
+  color: white !important;
+  width: 100% !important;
+  border-radius: 10px !important;
+}
