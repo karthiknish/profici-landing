@@ -1,4 +1,5 @@
 "use client";
+import Script from "next/script";
 
 const ContactPage = () => {
   return (
@@ -13,9 +14,9 @@ const ContactPage = () => {
         frameBorder="1"
         className="gfiframe mx-auto block border-2 p-2 border-black rounded-lg"
       />
-      <script
+      <Script
         src="//profici.co.uk/wp-content/plugins/gravity-forms-iframe-master/assets/scripts/gfembed.min.js"
-        type="text/javascript"
+        strategy="afterInteractive"
       />
     </div>
   );
